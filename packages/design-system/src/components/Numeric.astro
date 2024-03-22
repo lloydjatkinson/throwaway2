@@ -1,0 +1,16 @@
+---
+type Style =
+    | 'decimal'
+    | 'percent';
+
+export type Props = {
+    readonly value: number;
+    readonly locale?: string;
+    readonly style?: Style;
+};
+
+const { value, locale = 'en-GB', style = 'decimal' } = Astro.props as Props;
+
+const formatted = new Intl.NumberFormat(locale, { style }).format(value);
+---
+<span>{formatted}</span>
